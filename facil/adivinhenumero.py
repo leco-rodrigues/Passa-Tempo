@@ -26,8 +26,7 @@ def main():
             else:
                 print(f'{cores["negritovermelho"]}Por favor, digite um nome válido (sem espaço vazio).{cores["limpa"]}')
 
-    def validar_palpite(palpite):
-        
+    # def validar_palpite(palpite):
 
     def adivinhar_numero(jogadores):
         if sim_não(f'{cores["pretoebranco"]}Gostaria de adicionar mais um jogador(a) (s/n)?{cores["limpa"]} '):
@@ -69,7 +68,7 @@ while True:
         main()
         continue
     elif continuar.lower() in ['não', 'n']:
-        print('\033[1;35mAté a próxima!\033[m')
+        print('\033[1;35mObrigado por jogar "Adivinhe o número"! Até a próxima!\033[m')
         break
     else:
         print(f'\033[1;31mPor favor, digite apenas "sim" ou "não".\033[m')
