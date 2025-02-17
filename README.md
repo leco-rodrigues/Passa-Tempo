@@ -1,2 +1,2 @@
-# pequenos-desafios
- Pequenos desafios que vou fazendo para praticar.
+# Pequenos Desafios
+ Códigos simples que escrevi como passa-tempo.
