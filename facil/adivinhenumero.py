@@ -21,15 +21,9 @@ def main():
             return f'{cores["negritoamarelo"]}{txt}{cores["limpa"]}'
         if type == 6:
             return f'{cores["negritoverde"]}{txt}{cores["limpa"]}'
-        
-        return txt
 
-    def separador(txt):
-        print(cor(
-              '--=--' * 23,
-             f'\n{txt}\n',
-              '--=--' * 23
-                ), 3)
+    def separador():
+        print(cor('--=--', 3) * 23)
 
     def sim_não(pergunta:str):
         while True:
@@ -49,12 +43,12 @@ def main():
             if nome.split() and all(carac.isalnum() or carac.isspace() for carac in nome):
                 return nome
             else:
-                print(cor('Por favor, digite um nome válido (sem espaço vazio).', 2))
+                print(cor('Por favor, digite um nome válido (sem símbolos ou espaço em branco).', 2))
 
     def validar_palpite(jogador:str):
         while True:
             try:
-                palpite = int(input(cor(f'{jogador}, qual você acha que foi o número sorteado? ', 1)))
+                palpite = int(input(cor(f'{jogador}, qual você acha que foi o número sorteado?', 1)))
                 
                 if 1 <= palpite <= 100:
                     return palpite
@@ -65,8 +59,8 @@ def main():
                 print(cor('Por favor, digite um número inteiro.', 2))
 
     def adivinhar_numero(jogadores:list):
-        if sim_não(cor('Gostaria de adicionar mais um jogador(a) (s/n)? ', 1)):
-            j3 = nome_jogador(cor('Jogador(a) 3, por favor, digite o seu nome: ', 1))
+        if sim_não(cor('Gostaria de adicionar mais um jogador(a) (s/n)?', 1)):
+            j3 = nome_jogador(cor('Jogador(a) 3, por favor, digite o seu nome:', 1))
             jogadores.append(j3)
         
         numero = randint(1, 100)
@@ -76,31 +70,38 @@ def main():
             for i in range(len(jogadores)):
                 palpite = validar_palpite(jogadores[i])
                 
-                print(separador('Vejamos aqui...'))
+                separador()
+                print(cor('Vejamos aqui...', 3))
+                separador()
                 sleep(0.5)
                 
-                print(separador('Alterando o número...'))
+                print(cor('Alterando o número...', 3))
+                separador()
                 sleep(0.5)
                 
-                print(cor(separador('Haha! Brincadeirinha!'), 3))
+                print(cor('Haha! Brincadeirinha!', 3))
+                separador()
                 sleep(0.5)
                 
                 if palpite == numero:
-                    return cor(f'Meus parabéns! Você acertou! O número era {numero}.')
+                    return cor(f'Meus parabéns, {jogadores[i]}! Você venceu! O número correto era {numero}.', 6)
                 elif palpite > numero:
-                    print(cor('Mas você errou! O número correto é menor...', 4))
+                    print(cor(f'Mas você errou, {jogadores[i]}! O número correto é menor...', 4))
+                    separador()
                     tentativas = tentativas + 1
                 else:
-                    print(cor('Mas você errou! O número correto é maior...', 5))
+                    print(cor(f'Mas você errou, {jogadores[i]}! O número correto é maior...', 5))
+                    separador()
                     tentativas = tentativas + 1
         
         sleep(0.5)
-        print(separador(f'Suas tentativas se esgotaram! O número correto era {numero}. Parece que ninguém aí é muito bom nesse jogo, hein? Hahaha!'))
+        print(cor(f'Que pena! O número de tentativas se esgotou! O número correto era {numero}.', 2))
+        separador()
 
         return cor('Obrigado por jogar "Adivinhe o número"!', 3)
 
-    j1 = nome_jogador(cor('Jogador(a) 1, por favor, digite o seu nome: ', 1))
-    j2 = nome_jogador(cor('Jogador(a) 2, por favor, digite o seu nome: ', 1))
+    j1 = nome_jogador(cor('Jogador(a) 1, por favor, digite o seu nome:', 1))
+    j2 = nome_jogador(cor('Jogador(a) 2, por favor, digite o seu nome:', 1))
     jogadores = [j1, j2]
 
     print(adivinhar_numero(jogadores))
@@ -114,7 +115,10 @@ while True:
         main()
         continue
     elif continuar.lower() in ['não', 'n']:
-        print('\033[1;35mAté a próxima!\033[m')
+        print('\033[1;35m--=--' * 23,
+              '\n\Espero ver você(s) aqui de novo em breve! Até a próxima!\033[m')
         break
     else:
         print(f'\033[1;31mPor favor, digite apenas "sim" ou "não".\033[m')
+
+exit()
