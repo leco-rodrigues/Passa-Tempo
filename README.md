@@ -1,2 +1,2 @@
 # Pequenos Desafios
- Códigos simples que escrevi como passa-tempo.
+ Códigos simples que escrevi como passatempo.
